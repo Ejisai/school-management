@@ -5,8 +5,8 @@ import { LOGIN_ROUTE, STUDENT_DASHBOARD_ROUTE, TEACHER_DASHBOARD_ROUTE } from ".
 import { Gauge } from "lucide-react";
 import { ModeToggle } from "../components/mode-toggle";
 import { TeacherAdministrationSideBar } from "./Administration/TeacherAdministrationSideBar";
-import UserApi from "../services/Api/Student/UserApi";
 import TeacherDropDownMenu from "./drop-down-menu/TeacherDropDownMenu";
+import UserApi from "../services/Api/Student/UserApi";
 
 const TeacherDashboardLayout = () => {
     const navigate = useNavigate();

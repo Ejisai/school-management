@@ -50,7 +50,13 @@ class StudentParentController extends Controller
     public function update(UpdateStudentParentRequest $request, StudentParent $parent)
     {
         $formFields = $request->validated();
+        // $formFields['password'] = Hash::make($formFields['password']);
+        // for updating the password will not be required
+         if (!empty($formFields['password'])) {
         $formFields['password'] = Hash::make($formFields['password']);
+    } else {
+        unset($formFields['password']);
+    }
         $parent->update($formFields);
         return response()->json([
                 'parent' => $parent,

@@ -19,13 +19,6 @@ const ParentDashboardLayout = () => {
     } = useUserContext();
 
     useEffect(() => {
-        // console.log(typeof authenticated);
-
-        //     console.log(context);
-
-        //     if (!context.authenticated) {
-        //         // navigate(LOGIN_ROUTE);
-        //     }
         if (authenticated === true) {
             setisLoading(false)
             UserApi.getUser()
@@ -36,7 +29,6 @@ const ParentDashboardLayout = () => {
                 .catch((reason) => {
                     contextLogout();
                     console.log(reason);
-
                 });
         }else{
             navigate(LOGIN_ROUTE);

@@ -35,10 +35,17 @@ const formSchema = z.object({
     email: z.string().email().min(2).max(30),
     password: z.string().min(3).max(30),
 });
+        // password not required on update
 
+const updateSchema = formSchema.extend({
+    password: z.string().min(3).max(30).optional(),
+});
 const ParentUpsertForm = ({handleSubmit, values}) => {
+    const isUpdate = values !== undefined;
     const form = useForm({
-        resolver: zodResolver(formSchema),
+        // resolver: zodResolver(formSchema),
+        // password not required on update
+        resolver: zodResolver(isUpdate ? updateSchema : formSchema),
         defaultValues: values || {}
     });
     const {
@@ -46,7 +53,8 @@ const ParentUpsertForm = ({handleSubmit, values}) => {
         formState: { isSubmitting },
         reset,
     } = form;
-    const isUpdate = values !== undefined;
+    // this line should be on top of form useform
+    // const isUpdate = values !== undefined;
     async function onSubmit(values) {
         const loaderMsg = isUpdate ? "Updating in progress" : 'Adding parent'
         const loader = toast.loading(loaderMsg);

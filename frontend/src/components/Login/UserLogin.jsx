@@ -57,16 +57,13 @@ const UserLogin = () => {
                         navigate(PARENT_DASHBOARD_ROUTE);
                             break;
                     }
-                    console.log(data);
                 }
             })
             .catch(({ response }) => {
-                // setError("email", {
-                //     // message: response.data.errors.email.join(),
-
-                // });
-                                    console.log(response);
-
+                setError("email", {
+                    message: response.data.errors.email.join(),
+                });
+                console.log(response);
             });
     }
     return (
